@@ -1,47 +1,45 @@
 import * as React from "react";
-import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
+import {
+    List, Datagrid, Edit, SimpleForm, Create,
+    TextField, SelectInput, TextInput, ReferenceField, EditButton, ReferenceInput
+} from 'react-admin';
 import BookIcon from '@material-ui/icons/Book';
 export const PostIcon = BookIcon;
 
 export const PostList = (props) => (
     <List {...props}>
-        <Datagrid>
+        <Datagrid >
             <TextField source="id" />
+            <ReferenceField source="userId" reference="users">
+                <TextField source="name" />
+            </ReferenceField>
             <TextField source="title" />
-            <DateField source="published_at" />
-            <TextField source="average_note" />
-            <TextField source="views" />
-            <EditButton basePath="/posts" />
+            <EditButton />
         </Datagrid>
     </List>
 );
 
-const PostTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.title}"` : ''}</span>;
-};
-
-export const PostEdit = (props) => (
-    <Edit title={<PostTitle />} {...props}>
+export const PostEdit = props => (
+    <Edit {...props}>
         <SimpleForm>
             <TextInput disabled source="id" />
+            <ReferenceField source="userName" reference="users">
+                <SelectInput optionText="name" />
+            </ReferenceField>
             <TextInput source="title" />
-            <TextInput source="teaser" options={{ multiline: true }} />
             <TextInput multiline source="body" />
-            <DateInput label="Publication date" source="published_at" />
-            <TextInput source="average_note" />
-            <TextInput disabled label="Nb views" source="views" />
         </SimpleForm>
     </Edit>
-);
+)
 
-export const PostCreate = (props) => (
-    <Create title="Create a Post" {...props}>
+export const PostCreate = props => (
+    <Create {...props}>
         <SimpleForm>
+            <ReferenceInput source="userId" reference="users">
+                <SelectInput optionText="name" />
+            </ReferenceInput>
             <TextInput source="title" />
-            <TextInput source="teaser" options={{ multiline: true }} />
             <TextInput multiline source="body" />
-            <TextInput label="Publication date" source="published_at" />
-            <TextInput source="average_note" />
         </SimpleForm>
     </Create>
 );
