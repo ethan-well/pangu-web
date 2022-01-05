@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useLogin, useNotify } from 'react-admin';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { RequestData  } from './submit';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,9 +30,19 @@ const useStyles = makeStyles(theme => ({
 
 const LoginPage = () => {
   const classes = useStyles();
-
   const login = useLogin();
   const notify = useNotify();
+
+  const [oauthUrl, setOAuthUrl] = useState("");
+
+  const oAuthInfoCallback = (resp) => {
+    setOAuthUrl(resp.result.complete_path)
+  }
+
+  useEffect(() => {
+    RequestData(`${process.env.REACT_APP_EUROPA_OAUTH_INFO}?provider=github`, oAuthInfoCallback)
+  }, []);
+
 
   const HandleClick = () => {
     login({ username: 'john', password: 'doe' }).catch(() => notify("Invalid email or password"));
@@ -47,8 +59,12 @@ spacing={0}
   justifyContent="center"
   style={{ minHeight: '100vh' }}>
           <Card className={classes.loginCardStyle} style={{ direction: 'column', alignItems: 'center', display:'flex', justifyContent:'center' }}>
-            <CardContent>
-              <Button variant="contained">Contained</Button>
+          <CardContent className={classes.cardContentSize} sx={{ display: 'flex', flexDirection: 'column', alignItems: "center", justifyContent: "center"  }}>
+                <Typography component="div">
+                    <Button style={{textTransform: 'none'}} startIcon={<GitHubIcon />} href={oauthUrl} variant="outlined">
+                        GitHub 登录
+                    </Button>
+                </Typography>
             </CardContent>
           </Card>
         </Grid>
