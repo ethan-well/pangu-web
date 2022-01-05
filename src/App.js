@@ -6,11 +6,12 @@ import { PostList, PostEdit, PostCreate } from './posts';
 import Dashboard from './Dashboard';
 import authProvider from './authProvider';
 import dataProvider from './dataProvider';
-
+import CustomLoginPage from './CustomLoginPage';
 
 // const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+
 const App = () => (
-  <Admin dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
+  <Admin dashboard={Dashboard} loginPage={CustomLoginPage} authProvider={authProvider} dataProvider={dataProvider}>
     <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} />
     <Resource name="users" list={UserList} />
   </Admin>

@@ -7,6 +7,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "eslint-config-react-app": "^7.0.0",
+    "material-grid": "^0.1.0",
     "prop-types": "^15.7.2",
     "ra-data-json-server": "^3.19.4",
     "ra-data-simple-rest": "^3.19.4",
@@ -17,7 +18,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

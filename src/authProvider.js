@@ -1,8 +1,11 @@
+import Login from "./login";
+
 const authProvider = {
   // called when the user attempts to log in
-  login: ({ username }) => {
+  login: ({ username, password }) => {
     localStorage.setItem('username', username);
     // accept all username/password combinations
+    Login(username, password);
     return Promise.resolve();
   },
   // called when the user clicks on the logout button
