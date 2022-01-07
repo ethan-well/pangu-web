@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = () => {
+const OauthCard = () => {
   const classes = useStyles();
   const login = useLogin();
   const notify = useNotify();
@@ -103,4 +103,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default OauthCard;
