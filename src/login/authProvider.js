@@ -1,6 +1,11 @@
 const authProvider = {
   // called when the user attempts to log in
-  login: (userInfo) => {
+  login: (loginInfo) => {
+    if (loginInfo == null || loginInfo.userInfo == null) {
+      return Promise.reject();
+    }
+
+    const userInfo = loginInfo.userInfo;
     localStorage.setItem("name", userInfo.name);
     localStorage.setItem("role", userInfo.role);
     return Promise.resolve();
@@ -11,7 +16,7 @@ const authProvider = {
     return Promise.resolve();
   },
   getIdentity: () => {
-    
+
   },
   // called when the API returns an error
   checkError: ({ status }) => {

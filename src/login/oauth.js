@@ -14,7 +14,6 @@ export default function OAuth(props) {
   const notify = useNotify();
 
   const loginOAuthCallback = (resp) => {
-    console.log(resp);
     if (resp.succeed) {
       login(resp.result)
         .catch(() => {
