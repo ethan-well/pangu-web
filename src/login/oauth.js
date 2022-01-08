@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { LoginOAuth } from "./submit";
+import { LoginOAuth } from "../submit";
 import { useLogin, useNotify } from "react-admin";
 import { usePermissions } from "react-admin";
 

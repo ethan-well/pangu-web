@@ -1,5 +1,3 @@
-import Login from "./login";
-
 const authProvider = {
   // called when the user attempts to log in
   login: (userInfo) => {
@@ -11,6 +9,9 @@ const authProvider = {
   logout: () => {
     localStorage.removeItem("name");
     return Promise.resolve();
+  },
+  getIdentity: () => {
+    
   },
   // called when the API returns an error
   checkError: ({ status }) => {
@@ -27,7 +28,7 @@ const authProvider = {
   // called when the user navigates to a new location, to check for permissions / roles
   getPermissions: () => {
     const role = localStorage.getItem("role");
-    return role ? Promise.resolve(role) : Promise.resolve("admin");
+    return role ? Promise.resolve(role) : Promise.resolve("gust");
   },
 };
 

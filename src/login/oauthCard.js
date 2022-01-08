@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLogin, useNotify } from "react-admin";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -6,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { RequestData } from "./submit";
+import { RequestData } from "../submit";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +25,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = () => {
+const OauthCard = () => {
   const classes = useStyles();
+  const login = useLogin();
+  const notify = useNotify();
 
   const [oauthUrl, setOAuthUrl] = useState("");
 
   const oAuthInfoCallback = (resp) => {
+    console.log(oauthUrl);
     setOAuthUrl(resp.result.complete_path);
   };
 
@@ -92,4 +96,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default OauthCard;

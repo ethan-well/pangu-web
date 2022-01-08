@@ -3,11 +3,10 @@ import { Admin, Resource } from "react-admin";
 import { UserList } from "./users";
 import { PostList, PostEdit, PostCreate } from "./posts";
 import Dashboard from "./dashboard";
-import authProvider from "./authProvider";
+import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
-import MyLogoutButton from "./myLogoutButton";
-import LoginPage from "./customLoginPage";
-import customRoutes from "./customRoutes";
+import LoginPage from "./login/loginPage";
+import customRoutes from "./routes";
 import { createBrowserHistory as createHistory } from "history";
 
 import { createTheme } from "@material-ui/core/styles";
