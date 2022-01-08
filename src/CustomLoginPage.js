@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLogin, useNotify } from "react-admin";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -28,13 +26,10 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginPage = () => {
   const classes = useStyles();
-  const login = useLogin();
-  const notify = useNotify();
 
   const [oauthUrl, setOAuthUrl] = useState("");
 
   const oAuthInfoCallback = (resp) => {
-    console.log(oauthUrl);
     setOAuthUrl(resp.result.complete_path);
   };
 
@@ -44,12 +39,6 @@ const LoginPage = () => {
       oAuthInfoCallback
     );
   }, []);
-
-  const HandleClick = () => {
-    login({ username: "john", password: "doe" }).catch(() =>
-      notify("Invalid email or password")
-    );
-  };
 
   return (
     <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }}>

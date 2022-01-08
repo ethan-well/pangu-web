@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Admin, Resource } from 'react-admin';
+import { Admin, Resource } from "react-admin";
 
-var Login = (username, password) =>  {
+var Login = (username, password, id) => {
   console.log(username);
   console.log(password);
-}
+  console.log(username);
+  console.log(id);
+};
 
-export default Login
+export default Login;

@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { LoginOAuth } from "./submit";
+import { useLogin, useNotify } from "react-admin";
+import { usePermissions } from "react-admin";
 
 export default function OAuth(props) {
+  const { loading, permissions } = usePermissions();
+
   const search = useLocation().search;
   const history = useHistory();
 
-  const [result, setValues] = useState({
-    provider: "",
-    code: "",
-  });
+  const login = useLogin();
+  const notify = useNotify();
 
   const loginOAuthCallback = (resp) => {
-    console.log("ddddddddddddddd");
+    console.log(resp);
     if (resp.succeed) {
-      history.push("/");
+      login(resp.result)
+        .catch(() => {
+          notify("login failed");
+          history.push("/login");
+        })
+        .then(history.push("/"));
     } else {
+      notify("login failed");
       history.push("/login");
     }
   };
@@ -23,29 +31,16 @@ export default function OAuth(props) {
   let loginOAuth = {
     provider: "github",
     code: new URLSearchParams(search).get("code"),
+    service: process.env.REACT_APP_EUROPA_OAUTH_CLIENT_SERVICE,
   };
 
   useEffect(() => {
     LoginOAuth(loginOAuth, loginOAuthCallback);
-  });
+  }, []);
 
-  return <React.Fragment></React.Fragment>;
-}
-
-function Onload({ code }) {
-  return (
-    <div>{code ? <OnSucceed code={code} /> : <OnFailed code={code} />}</div>
+  return loading ? (
+    <React.Fragment>登录中...</React.Fragment>
+  ) : (
+    <React.Fragment> 登录成功，跳转中 </React.Fragment>
   );
-}
-
-function OnSucceed({ code }) {
-  return (
-    <React.Fragment>
-      <h3>登录成功 {code}</h3>
-    </React.Fragment>
-  );
-}
-
-function OnFailed() {
-  return <React.Fragment>登录失败</React.Fragment>;
 }

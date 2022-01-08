@@ -1,30 +1,37 @@
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
-// import jsonServerProvider from 'ra-data-json-server';
 import { UserList } from "./users";
 import { PostList, PostEdit, PostCreate } from "./posts";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard";
 import authProvider from "./authProvider";
 import dataProvider from "./dataProvider";
-import CustomLoginPage from "./CustomLoginPage";
-import customRoutes from "./router";
-
-import MyLoginPage from "./MyLoginPage";
-import MyLogoutButton from "./MyLogoutButton";
+import MyLogoutButton from "./myLogoutButton";
+import LoginPage from "./customLoginPage";
+import customRoutes from "./customRoutes";
+import { createBrowserHistory as createHistory } from "history";
 
 import { createTheme } from "@material-ui/core/styles";
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#402B8C",
+    },
+    secondary: {
+      main: "#7659B1",
+    },
+  },
+});
 
-// const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+const history = createHistory();
 
 const App = () => (
   <Admin
     theme={theme}
+    history={history}
     customRoutes={customRoutes}
     dashboard={Dashboard}
-    logoutButton={MyLogoutButton}
-    loginPage={MyLoginPage}
+    loginPage={LoginPage}
     authProvider={authProvider}
     dataProvider={dataProvider}
   >

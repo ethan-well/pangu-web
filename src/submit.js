@@ -115,8 +115,6 @@ const RequestData = (url, callback) => {
 }
 
 const LoginOAuth = (state, callback) => {
-  console.log("LoginOAuth ddddd");
-
   let body = Object.create({});
   Object.keys(state).map(key => {
     if (key != `password_show`) {
