@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "eslint-config-react-app": "^7.0.0",
     "firebase": "^7.24.0",
+    "js-cookie": "^3.0.1",
     "material-grid": "^0.1.0",
     "prop-types": "^15.7.2",
     "ra-data-json-server": "^3.19.4",

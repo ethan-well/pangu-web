@@ -1,3 +1,5 @@
+import logout from "./logout";
+
 const authProvider = {
   // called when the user attempts to log in
   login: (loginInfo) => {
@@ -7,17 +9,15 @@ const authProvider = {
 
     const userInfo = loginInfo.userInfo;
     localStorage.setItem("name", userInfo.name);
-    localStorage.setItem("role", userInfo.role);
+    localStorage.setItem("roles", userInfo.roles);
     return Promise.resolve();
   },
   // called when the user clicks on the logout button
   logout: () => {
-    localStorage.removeItem("name");
-    return Promise.resolve();
+    const name = localStorage.getItem("name");
+    logout(name) ? Promise.resolve() : Promise.reject();
   },
-  getIdentity: () => {
-
-  },
+  getIdentity: () => {},
   // called when the API returns an error
   checkError: ({ status }) => {
     if (status === 401 || status === 403) {
@@ -28,12 +28,15 @@ const authProvider = {
   },
   // called when the user navigates to a new location, to check for authentication
   checkAuth: () => {
-    return localStorage.getItem("name") ? Promise.resolve() : Promise.reject();
+    const name = localStorage.getItem("name");
+    const roles = localStorage.getItem("roles");
+    return name && roles ? Promise.resolve() : Promise.reject();
   },
   // called when the user navigates to a new location, to check for permissions / roles
   getPermissions: () => {
-    const role = localStorage.getItem("role");
-    return role ? Promise.resolve(role) : Promise.resolve("gust");
+    const name = localStorage.getItem("name");
+    const roles = localStorage.getItem("roles");
+    return name && roles ? Promise.resolve() : Promise.reject();
   },
 };
 
