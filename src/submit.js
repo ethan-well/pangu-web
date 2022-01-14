@@ -1,7 +1,3 @@
-import React, { useState, useCallback } from "react";
-import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles"
-
 const RequestData = (url, callback) => {
   fetch(`${process.env.REACT_APP_EUROPA_SERVER_HOST}/${url}`)
     .then((resp) => resp.json())
@@ -21,10 +17,6 @@ const RequestData = (url, callback) => {
 };
 
 const PostData = (url, params, callback) => {
-  console.log("PostData", url);
-  console.log("params", params);
-  console.log("callback", callback);
-
   let body = Object.create({});
   Object.keys(params).map((key) => {
     body[key] = params[key];
@@ -89,8 +81,4 @@ const LoginOAuth = (state, callback) => {
     });
 };
 
-export {
-  RequestData,
-  LoginOAuth,
-  PostData,
-};
+export { RequestData, LoginOAuth, PostData };

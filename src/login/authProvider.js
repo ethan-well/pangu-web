@@ -14,8 +14,26 @@ const authProvider = {
   },
   // called when the user clicks on the logout button
   logout: () => {
-    const name = localStorage.getItem("name");
-    logout(name) ? Promise.resolve() : Promise.reject();
+    const request = new Request(
+      `${process.env.REACT_APP_EUROPA_SERVER_HOST}/v1/pangu/logout`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return fetch(request)
+      .then((response) => {
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   },
   getIdentity: () => {},
   // called when the API returns an error

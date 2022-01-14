@@ -1,21 +1,14 @@
 import { PostData } from "../submit";
-import Cookies from "js-cookie";
 
-export default function logout(username) {
-  console.log("username", username);
-
+export default function logout(callback) {
   let result = false;
 
   const LogoutCallback = (resp) => {
-    console.log("resp", resp);
-    result = resp.logout;
+    result = resp.succeed;
+    callback(result);
   };
 
-  PostData(
-    `${process.env.REACT_APP_EUROPA_LOGOUT}`,
-    {},
-    LogoutCallback
-  );
+  PostData(`${process.env.REACT_APP_EUROPA_LOGOUT}`, {}, LogoutCallback);
 
   return result;
 }
