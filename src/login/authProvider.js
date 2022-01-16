@@ -32,11 +32,13 @@ const authProvider = {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        if (data.succeed) {
+          localStorage.removeItem("name");
+          localStorage.removeItem("roles");
+        }
       });
   },
   getIdentity: () => {},
-  // called when the API returns an error
   checkError: ({ status }) => {
     if (status === 401 || status === 403) {
       localStorage.removeItem("name");

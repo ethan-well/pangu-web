@@ -41,7 +41,7 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }}>
+    <Box sx={{ bgcolor: "#313264", height: "100vh" }}>
       <Grid container className={classes.grid}>
         <Grid item xs={2}></Grid>
         <Grid
