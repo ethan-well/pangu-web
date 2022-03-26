@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
-import { UserList } from "./users";
-import { PostList, PostEdit, PostCreate } from "./posts";
+import {
+  CategoryList,
+  CategoryEdit,
+  CategoryCreate,
+} from "./category/category";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
@@ -35,12 +38,11 @@ const App = () => (
     dataProvider={dataProvider}
   >
     <Resource
-      name="posts"
-      list={PostList}
-      edit={PostEdit}
-      create={PostCreate}
+      name="categories"
+      list={CategoryList}
+      edit={CategoryEdit}
+      create={CategoryCreate}
     />
-    <Resource name="users" list={UserList} />
   </Admin>
 );
 
