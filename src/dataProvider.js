@@ -6,7 +6,6 @@ const httpClient = fetchUtils.fetchJson;
 
 const dataProvider = {
   getList: (resource, params) => {
-    console.log(params);
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
     const query = {
@@ -17,10 +16,16 @@ const dataProvider = {
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
-    return httpClient(url).then(({ headers, json }) => ({
-      data: json.data,
-      total: json.total, // parseInt(headers.get("content-range").split("/").pop(), 10),
-    }));
+    return httpClient(url).then(({ headers, json }) => {
+      if (json.data && json.data.data) {
+        json = json.data;
+      }
+
+      return {
+        data: json.data,
+        total: json.total,
+      };
+    });
   },
 
   getOne: (resource, params) =>
