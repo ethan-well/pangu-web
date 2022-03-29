@@ -37,6 +37,13 @@ export const ProductEdit = (props) => (
     <SimpleForm>
       <TextInput disabled label="Id" source="id" />
       <TextInput source="name" validate={required()} />
+      <ReferenceField
+        label="category"
+        source="category_id"
+        reference="categories"
+      >
+        <TextInput source="name" />
+      </ReferenceField>
       <TextInput multiline source="desc" validate={required()} />
     </SimpleForm>
   </Edit>

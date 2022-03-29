@@ -40,10 +40,10 @@ const dataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
     return httpClient(url).then(({ json }) => {
       if (json.data) {
-        json = json.data
+        json = json.data;
       }
 
-      return {data: json}
+      return { data: json };
     });
   },
 
@@ -109,7 +109,17 @@ const dataProvider = {
     };
     return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
       method: "DELETE",
-    }).then(({ json }) => ({ data: json }));
+    }).then(({ json }) => {
+      if (json.data) {
+        json = json.data;
+      }
+
+      if (json && json.ids) {
+        json = json.ids;
+      }
+
+      return { data: json };
+    });
   },
 };
 
