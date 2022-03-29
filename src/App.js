@@ -6,6 +6,7 @@ import {
   CategoryCreate,
 } from "./category/category";
 import { ProductList, ProductEdit, ProductCreate } from "./product/product";
+import { SubProductList, SubProductEdit, SubProductCreate } from "./subproduct/sub_product";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
@@ -49,6 +50,12 @@ const App = () => (
       list={ProductList}
       edit={ProductEdit}
       create={ProductCreate}
+    />
+    <Resource
+      name="sub_products"
+      list={SubProductList}
+      edit={SubProductEdit}
+      create={SubProductCreate}
     />
   </Admin>
 );

@@ -9,44 +9,48 @@ import {
   TextInput,
   EditButton,
   required,
-  ReferenceField,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
 export const PostIcon = BookIcon;
 
-export const ProductList = (props) => (
+export const SubProductList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-      <ReferenceField
-        label="category"
-        source="category_id"
-        reference="categories"
-      >
-        <TextField source="name" />
-      </ReferenceField>
       <TextField source="name" />
       <TextField source="desc" />
+      <TextField source="product_id" />
+      <TextField source="currency" />
+      <TextField source="price" />
+      <TextField source="stock" />
       <EditButton />
     </Datagrid>
   </List>
 );
 
-export const ProductEdit = (props) => (
+export const SubProductEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled label="Id" source="id" />
       <TextInput source="name" validate={required()} />
       <TextInput multiline source="desc" validate={required()} />
+      <TextInput source="product_id" validate={required()} />
+      <TextInput source="currency" validate={required()} />
+      <TextInput source="price" validate={required()} />
+      <TextInput source="stock" validate={required()} />
     </SimpleForm>
   </Edit>
 );
 
-export const ProductCreate = (props) => (
+export const SubProductCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" validate={required()} />
       <TextInput multiline source="desc" validate={required()} />
+      <TextInput source="product_id" validate={required()} />
+      <TextInput source="currency" validate={required()} />
+      <TextInput source="price" validate={required()} />
+      <TextInput source="stock" validate={required()} />
     </SimpleForm>
   </Create>
 );

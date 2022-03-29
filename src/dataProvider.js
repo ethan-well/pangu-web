@@ -38,8 +38,16 @@ const dataProvider = {
       filter: JSON.stringify({ id: params.ids }),
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
-    return httpClient(url).then(({ json }) => ({ data: json }));
+    return httpClient(url).then(({ json }) => {
+      if (json.data) {
+        json = json.data
+      }
+
+      return {data: json}
+    });
   },
+
+  // { data: json }
 
   getManyReference: (resource, params) => {
     const { page, perPage } = params.pagination;
