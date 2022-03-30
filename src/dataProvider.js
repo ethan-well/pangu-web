@@ -23,7 +23,7 @@ const dataProvider = {
 
       return {
         data: json.data,
-        total: json.total,
+        total: parseInt(json.total),
       };
     });
   },
@@ -72,8 +72,15 @@ const dataProvider = {
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "PUT",
       body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ data: json })),
+    }).then(({ json }) => {
+      if (json.data) {
+        json = json.data;
+      }
 
+      return {
+        data: json,
+      };
+    }),
   updateMany: (resource, params) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
@@ -101,7 +108,11 @@ const dataProvider = {
   delete: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "DELETE",
-    }).then(({ json }) => ({ data: json })),
+    }).then(({ json }) => {
+      return {
+        data: json,
+      };
+    }),
 
   deleteMany: (resource, params) => {
     const query = {

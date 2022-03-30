@@ -6,7 +6,16 @@ import {
   CategoryCreate,
 } from "./category/category";
 import { ProductList, ProductEdit, ProductCreate } from "./product/product";
-import { SubProductList, SubProductEdit, SubProductCreate } from "./subproduct/sub_product";
+import {
+  SubProductList,
+  SubProductEdit,
+  SubProductCreate,
+} from "./subproduct/sub_product";
+import {
+  AttributeList,
+  AttributeEdit,
+  AttributeCreate,
+} from "./attribute/attribute";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
@@ -56,6 +65,12 @@ const App = () => (
       list={SubProductList}
       edit={SubProductEdit}
       create={SubProductCreate}
+    />
+    <Resource
+      name="attributes"
+      list={AttributeList}
+      edit={AttributeEdit}
+      create={AttributeCreate}
     />
   </Admin>
 );
