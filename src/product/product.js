@@ -10,6 +10,8 @@ import {
   EditButton,
   required,
   ReferenceField,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
 export const PostIcon = BookIcon;
@@ -53,6 +55,14 @@ export const ProductCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" validate={required()} />
+      <ReferenceInput
+        label="Category"
+        source="category_id"
+        reference="categories"
+        validate={[required()]}
+      >
+        <SelectInput optionText="name" />
+      </ReferenceInput>
       <TextInput multiline source="desc" validate={required()} />
     </SimpleForm>
   </Create>

@@ -3,6 +3,6 @@ import { Card, CardContent, CardHeader } from "@material-ui/core";
 
 export default () => (
   <Card>
-    <CardHeader title="Welcome to the amusingX admin" />
+    <CardHeader title="Welcome to  Amusing-X Admin" />
   </Card>
 );
