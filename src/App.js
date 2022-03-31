@@ -4,18 +4,18 @@ import {
   CategoryList,
   CategoryEdit,
   CategoryCreate,
-} from "./category/category";
-import { ProductList, ProductEdit, ProductCreate } from "./product/product";
+} from "./sources/category/category";
+import { ProductList, ProductEdit, ProductCreate } from "./sources/product/product";
 import {
   SubProductList,
   SubProductEdit,
   SubProductCreate,
-} from "./subproduct/sub_product";
+} from "./sources/subproduct/sub_product";
 import {
   AttributeList,
   AttributeEdit,
   AttributeCreate,
-} from "./attribute/attribute";
+} from "./sources/attribute/attribute";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
