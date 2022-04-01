@@ -43,11 +43,13 @@ const dataProvider = {
         json = json.data;
       }
 
+      if (json.data) {
+        json = json.data;
+      }
+
       return { data: json };
     });
   },
-
-  // { data: json }
 
   getManyReference: (resource, params) => {
     const { page, perPage } = params.pagination;

@@ -11,6 +11,7 @@ import {
   required,
   ReferenceInput,
   SelectInput,
+  ReferenceField,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
 export const PostIcon = BookIcon;
@@ -21,7 +22,9 @@ export const SubProductList = (props) => (
       <TextField source="id" />
       <TextField source="name" />
       <TextField source="desc" />
-      <TextField source="product_id" />
+      <ReferenceField label="product" source="product_id" reference="products">
+        <TextField source="name" />
+      </ReferenceField>
       <TextField source="currency" />
       <TextField source="price" />
       <TextField source="stock" />
@@ -44,7 +47,6 @@ export const SubProductEdit = (props) => (
       >
         <SelectInput optionText="name" />
       </ReferenceInput>
-
       <TextInput source="currency" validate={required()} />
       <TextInput source="price" validate={required()} />
       <TextInput source="stock" validate={required()} />
@@ -57,7 +59,14 @@ export const SubProductCreate = (props) => (
     <SimpleForm>
       <TextInput source="name" validate={required()} />
       <TextInput multiline source="desc" validate={required()} />
-      <TextInput source="product_id" validate={required()} />
+      <ReferenceInput
+        label="product"
+        source="product_id"
+        reference="products"
+        validate={[required()]}
+      >
+        <SelectInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="currency" validate={required()} />
       <TextInput source="price" validate={required()} />
       <TextInput source="stock" validate={required()} />
