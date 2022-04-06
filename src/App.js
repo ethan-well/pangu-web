@@ -16,6 +16,11 @@ import {
   AttributeEdit,
   AttributeCreate,
 } from "./sources/attribute/attribute";
+import {
+  AttributeMappingList,
+  AttributeMappingEdit,
+  AttributeMappingCreate,
+} from "./sources/attributeMapping/attribute_mapping";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
 import dataProvider from "./dataProvider";
@@ -72,6 +77,12 @@ const App = () => (
       edit={AttributeEdit}
       create={AttributeCreate}
     />
+    <Resource
+  name="attribute_mappings"
+  list={AttributeMappingList}
+  edit={AttributeMappingEdit}
+  create={AttributeMappingCreate}
+/>
   </Admin>
 );
 
