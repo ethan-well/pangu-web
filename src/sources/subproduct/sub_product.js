@@ -12,8 +12,12 @@ import {
   ReferenceInput,
   SelectInput,
   ReferenceField,
+  AutocompleteArrayInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
+import Button from "@material-ui/core/Button";
 export const PostIcon = BookIcon;
 
 export const SubProductList = (props) => (
@@ -50,6 +54,9 @@ export const SubProductEdit = (props) => (
       <TextInput source="currency" validate={required()} />
       <TextInput source="price" validate={required()} />
       <TextInput source="stock" validate={required()} />
+      <ReferenceArrayInput source="attribute_id" reference="attributes">
+        <SelectArrayInput optionText="name" />
+      </ReferenceArrayInput>
     </SimpleForm>
   </Edit>
 );
@@ -70,6 +77,9 @@ export const SubProductCreate = (props) => (
       <TextInput source="currency" validate={required()} />
       <TextInput source="price" validate={required()} />
       <TextInput source="stock" validate={required()} />
+      <ReferenceArrayInput source="attribute_id" reference="attributes">
+        <SelectArrayInput optionText="name" />
+      </ReferenceArrayInput>
     </SimpleForm>
   </Create>
 );
