@@ -9,6 +9,9 @@ import {
   TextInput,
   EditButton,
   required,
+  ReferenceArrayInput,
+  SelectArrayInput,
+  ReferenceField,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
 export const PostIcon = BookIcon;
@@ -17,8 +20,16 @@ export const AttributeMappingList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-      <TextField source="attrId" />
-      <TextField source="subProductId" />
+      <ReferenceField label="attribute" source="attrId" reference="attributes">
+        <TextField source="name" />
+      </ReferenceField>
+      <ReferenceField
+        label="subProduct"
+        source="subProductId"
+        reference="sub_products"
+      >
+        <TextField source="name" />
+      </ReferenceField>
       <TextField source="attrValue" />
       <EditButton />
     </Datagrid>
