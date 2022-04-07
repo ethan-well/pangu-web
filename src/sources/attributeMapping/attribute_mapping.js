@@ -29,7 +29,7 @@ export const AttributeMappingList = (props) => (
         reference="sub_products"
       >
         <TextField source="name" />
-      </ReferenceField>
+      </ReferenceField> 
       <TextField source="attrValue" />
       <EditButton />
     </Datagrid>
