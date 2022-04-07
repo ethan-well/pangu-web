@@ -1,10 +1,9 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
-const apiUrl = `${process.env.REACT_APP_DATE_PROVIDER_HOST}`;
 const httpClient = fetchUtils.fetchJson;
 
-const dataProvider = {
+export default (apiUrl) => ({
   getList: (resource, params) => {
     const { page, perPage } = params.pagination;
     const { field, order } = params.sort;
@@ -83,6 +82,7 @@ const dataProvider = {
         data: json,
       };
     }),
+
   updateMany: (resource, params) => {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
@@ -134,6 +134,4 @@ const dataProvider = {
       return { data: json };
     });
   },
-};
-
-export default dataProvider;
+});

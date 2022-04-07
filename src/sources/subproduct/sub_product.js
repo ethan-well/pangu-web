@@ -15,6 +15,8 @@ import {
   AutocompleteArrayInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  ImageInput,
+  ImageField,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
 import Button from "@material-ui/core/Button";
@@ -57,6 +59,9 @@ export const SubProductEdit = (props) => (
       <ReferenceArrayInput source="attribute_id" reference="attributes">
         <SelectArrayInput optionText="name" />
       </ReferenceArrayInput>
+      <ImageInput multiple={true} source="pictures" label="Related pictures" accept="image/*">
+        <ImageField source="src" title="title" />
+      </ImageInput>
     </SimpleForm>
   </Edit>
 );
@@ -80,6 +85,9 @@ export const SubProductCreate = (props) => (
       <ReferenceArrayInput source="attribute_id" reference="attributes">
         <SelectArrayInput optionText="name" />
       </ReferenceArrayInput>
+      <ImageInput multiple={true} source="pictures" label="Related pictures" accept="image/*">
+        <ImageField source="src" title="title" />
+      </ImageInput>
     </SimpleForm>
   </Create>
 );

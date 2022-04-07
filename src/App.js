@@ -5,7 +5,11 @@ import {
   CategoryEdit,
   CategoryCreate,
 } from "./sources/category/category";
-import { ProductList, ProductEdit, ProductCreate } from "./sources/product/product";
+import {
+  ProductList,
+  ProductEdit,
+  ProductCreate,
+} from "./sources/product/product";
 import {
   SubProductList,
   SubProductEdit,
@@ -28,6 +32,8 @@ import LoginPage from "./login/loginPage";
 import customRoutes from "./routes";
 import { createBrowserHistory as createHistory } from "history";
 
+import myDataProvider from "./uploadProvider";
+
 import { createTheme } from "@material-ui/core/styles";
 
 const theme = createTheme({
@@ -42,6 +48,7 @@ const theme = createTheme({
 });
 
 const history = createHistory();
+const apiUrl = `${process.env.REACT_APP_DATE_PROVIDER_HOST}`;
 
 const App = () => (
   <Admin
@@ -51,7 +58,7 @@ const App = () => (
     dashboard={Dashboard}
     loginPage={LoginPage}
     authProvider={authProvider}
-    dataProvider={dataProvider}
+    dataProvider={myDataProvider(apiUrl)}
   >
     <Resource
       name="categories"
@@ -78,11 +85,11 @@ const App = () => (
       create={AttributeCreate}
     />
     <Resource
-  name="attribute_mappings"
-  list={AttributeMappingList}
-  edit={AttributeMappingEdit}
-  create={AttributeMappingCreate}
-/>
+      name="attribute_mappings"
+      list={AttributeMappingList}
+      edit={AttributeMappingEdit}
+      create={AttributeMappingCreate}
+    />
   </Admin>
 );
 
