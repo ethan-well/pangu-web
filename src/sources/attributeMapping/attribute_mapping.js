@@ -9,8 +9,6 @@ import {
   TextInput,
   EditButton,
   required,
-  ReferenceArrayInput,
-  SelectArrayInput,
   ReferenceField,
 } from "react-admin";
 import BookIcon from "@material-ui/icons/Book";
@@ -29,7 +27,7 @@ export const AttributeMappingList = (props) => (
         reference="sub_products"
       >
         <TextField source="name" />
-      </ReferenceField> 
+      </ReferenceField>
       <TextField source="attrValue" />
       <EditButton />
     </Datagrid>
