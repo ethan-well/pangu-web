@@ -1,9 +1,11 @@
 # pangu-web 是秒杀平台的 admin web
 
-## 依赖
-node：16.13.1
-npm install -g npm@8.3.0
-
+## 本地运行
+```
+git clone git@github.com:ItsWewin/pangu-web.git
+npm install
+npm run start
+```
 ## 部分页面
 #### login page
 ![login](https://raw.githubusercontent.com/ItsWewin/images/master/amusingx/login.png)
