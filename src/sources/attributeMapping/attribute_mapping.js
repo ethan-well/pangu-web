@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ReferenceInput, AutocompleteInput } from "react-admin";
 import {
   List,
   Datagrid,
@@ -38,18 +39,24 @@ export const AttributeMappingEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled label="Id" source="id" />
-      <TextInput
-        disabled
-        label="Attribute"
-        source="attrId"
-        validate={required()}
-      />
-      <TextInput
+      <ReferenceInput
         disabled
         label="SubProduct"
         source="subProductId"
+        reference="sub_products"
         validate={required()}
-      />
+      >
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
+      <ReferenceInput
+        disabled
+        label="Attribute"
+        source="attrId"
+        reference="attributes"
+        validate={required()}
+      >
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <TextInput multiline source="attrValue" validate={required()} />
     </SimpleForm>
   </Edit>
