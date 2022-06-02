@@ -27,7 +27,6 @@ import {
 } from "./sources/attributeMapping/attribute_mapping";
 import Dashboard from "./dashboard";
 import authProvider from "./login/authProvider";
-import dataProvider from "./dataProvider";
 import LoginPage from "./login/loginPage";
 import customRoutes from "./routes";
 import { createBrowserHistory as createHistory } from "history";
